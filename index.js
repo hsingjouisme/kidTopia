@@ -855,7 +855,7 @@ for (var i in parksData) {
       var information = `<div>
                         <h2 style="color: brown;">${parksData[i].公園}</h2>
                         <span>位置｜${parksData[i].行政區}</span>
-                        <span>設施包含｜${parksData[i].設施內容}</span>
+                        <span>設施｜${parksData[i].設施內容}</span>
                   </div>`;
 
   // 使用 jQuery 將 information 插入到 HTML 中
@@ -868,7 +868,7 @@ for (var i in parksData) {
       var information = `<div>
                         <h2 style="color: brown;">${parksData[i].公園}</h2>
                         <span>位置｜${parksData[i].行政區}</span>
-                        <span>設施包含｜${parksData[i].設施內容}</span>
+                        <span>設施｜${parksData[i].設施內容}</span>
                   </div>`;
 
   // 使用 jQuery 將 information 插入到 HTML 中
@@ -881,7 +881,7 @@ for (var i in parksData) {
       var information = `<div>
                         <h2 style="color: brown;">${parksData[i].公園}</h2>
                         <span>位置｜${parksData[i].行政區}</span>
-                        <span>設施包含｜${parksData[i].設施內容}</span>
+                        <span>設施｜${parksData[i].設施內容}</span>
                   </div>`;
 
   // 使用 jQuery 將 information 插入到 HTML 中

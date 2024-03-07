@@ -83,7 +83,7 @@ input[type="checkbox"] {
     color:	#CF9E9E;
 }
 #parkList_1{
-    width: 90%;
+    width: 100%;
     max-width: 1400px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -110,7 +110,7 @@ span{
     display: block;
 }
 #parkList_2{
-    width: 90%;
+    width: 100%;
     max-width: 1400px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -128,7 +128,7 @@ span{
     background-color: #87cefa;
 }
 #parkList_3{
-    width: 90%;
+    width: 100%;
     max-width: 1400px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
