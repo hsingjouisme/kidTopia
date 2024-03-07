@@ -1,0 +1,156 @@
+
+.topnav{
+    padding-top: 10px;
+    padding-bottom: 0px;
+    background: snow;
+    font-family: 'Cinzel', "微軟正黑體";
+    text-align: center;
+}
+.logo{
+    color: brown;
+    border: none;
+    width: 200px;
+    background: transparent;
+    text-align: center;
+
+}
+.logo_title{
+    font-size: 25px;
+}
+.logo_english_name{
+    font-size: 16px;
+}
+.search_layout{
+    width: 100%;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding-bottom: 120px;
+    padding: 0px 20px;
+    max-width: 1500px;
+}
+.search_box{
+    width: 90%;
+    max-width: 800px;
+    height: 250px;
+    background-color: gainsboro;
+    opacity: 0.8;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    /* display: none; */
+}
+.search_box input{
+    flex: 1;
+    height: 50px;
+    width: 85%;
+    max-width: 800px;
+    padding: 10px 15px;
+    border-radius: 30px;
+    background: snow;
+    margin-top: 30px;
+    border: none;
+}
+.search_box input:focus{
+    outline: none;
+    border: none;
+}
+button{
+    background: none;
+    border: none;
+    vertical-align: middle;
+    cursor: pointer;
+    color: black;
+}
+button:hover{
+    color: brown;
+}
+form{
+    margin-top: 10px;
+}
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    vertical-align: bottom;
+}
+.toggle_check_btn{
+    margin-top: 20px;
+}
+.location{
+    font-size: 50px;
+    color:	#CF9E9E;
+}
+#parkList_1{
+    width: 90%;
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0px auto;
+}
+#parkList_1 div{
+    margin-bottom: 50px;
+    border-radius: 20px;
+    background-color: #fffacd;
+    border: 2px solid black;
+    padding: 15px;
+    opacity: 0.9;
+    gap: 10px;
+    margin: 10px;
+}
+h2{
+    font-family: "Kaisei Tokumin", serif;
+    text-align: center;
+    margin-bottom: 10px;
+    color: brown;
+    margin: 10px auto;
+}
+span{
+    display: block;
+}
+#parkList_2{
+    width: 90%;
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0px auto 50px;
+}
+#parkList_2 div{
+    border: 2px solid black;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    background-color: snow;
+    padding: 15px;
+    opacity: 0.9;
+    gap: 10px;
+    margin: 10px;
+    background-color: #87cefa;
+}
+#parkList_3{
+    width: 90%;
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0px auto;
+}
+#parkList_3 div{
+    margin-bottom: 50px;
+    border-radius: 20px;
+    background-color: snow;
+    padding: 15px;
+    opacity: 0.9;
+    gap: 10px;
+    margin: 10px;
+    background-color: #ffc0cb;
+    border: 2px solid black;
+}
+
+/* footer */
+.footer{
+    padding: 20px;
+    text-align: center;
+    background: snow;
+    color: brown;
+    font-family: 'Cinzel', "微軟正黑體";
+}
