@@ -1,40 +1,4 @@
-// 設定取消全選功能
-// var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-// var button = document.getElementById('toggle_check_btn');
-
-// document.getElementById('toggle_check_btn').addEventListener('click', function () {
-//     checkboxes.forEach(function (checkbox) {
-//         checkbox.checked = !checkbox.checked;
-//     });
-
-//     button.textContent = button.textContent === '全選' ? '取消全選' : '全選';
-// });
-
-// 按下搜尋按鈕
-// var enter_keyword = document.getElementById('enter_keyword');
-// var search_box= document.getElementById('search_box');
-// var parklist= document.getElementById('parklist');
-// document.getElementById('search').addEventListener('click', function () {
-//     var noCheckboxChecked = true;
-
-//     checkboxes.forEach(function (checkbox) {
-//         if (checkbox.checked) {
-//             noCheckboxChecked = false;
-//         }
-//     });
-
-//     if (enter_keyword.value === "" && noCheckboxChecked) {
-//         alert("搜尋欄位不可空白且至少選擇一個選項");
-//     }
-//     else{
-//         search_box.style.display='none';
-//         parkList.style.display='block';
-//     }
-
-// });
-
-
-// 在你的 JavaScript 檔案中直接定義 JSON 資料
+//新竹市公園資料
 var parksData = [
     {
       "編號": "1",
@@ -850,43 +814,181 @@ var parksData = [
   }
 ]  
 
-for (var i in parksData) {
-  if(parksData[i].行政區==="北區"){
-      var information = `<div>
-                        <h2 style="color: brown;">${parksData[i].公園}</h2>
-                        <span>位置｜${parksData[i].行政區}</span>
-                        <span>設施｜${parksData[i].設施內容}</span>
-                  </div>`;
+//按側邊欄或是上方欄按鈕跳出相對應的div
+function showDiv(divId) {
+  hideAllDivs();
 
-  // 使用 jQuery 將 information 插入到 HTML 中
-  $('#parkList_1').append(information);
-  };
+  if (divId === 'all') {
+      var allDivs = document.querySelectorAll('.hidden');
+      allDivs.forEach(function (div) {
+          div.style.display = 'grid';
+      });
+  } else {
+
+      var divToShow = document.getElementById('zone_' + divId);
+      if (divToShow) {
+          divToShow.style.display = 'grid';
+      }
+  }
 }
 
-for (var i in parksData) {
-  if(parksData[i].行政區==="東區"){
-      var information = `<div>
-                        <h2 style="color: brown;">${parksData[i].公園}</h2>
-                        <span>位置｜${parksData[i].行政區}</span>
-                        <span>設施｜${parksData[i].設施內容}</span>
-                  </div>`;
+function hideAllDivs() {
 
-  // 使用 jQuery 將 information 插入到 HTML 中
-  $('#parkList_2').append(information);
-  };
+  var allDivs = document.querySelectorAll('.hidden');
+  allDivs.forEach(function (div) {
+      div.style.display = 'none';
+  });
+}
+showDiv('all');
+
+
+//把公園資訊顯示到對應div
+
+for (var i = 0; i < parksData.length; i++) {
+  if(parksData[i].行政區==='北區'){
+     var parkInformation = `
+                        <div class="park_info">
+                          <h2 style="color: brown;">${parksData[i].公園}</h2>
+                          <span>位置｜${parksData[i].行政區}</span>
+                          <span>設施｜${parksData[i].設施內容}</span>
+                        </div>`;
+      $('#parkInformation_north').append(parkInformation);
+  }
+ 
 }
 
-for (var i in parksData) {
-  if(parksData[i].行政區==="香山區"||parksData[i].行政區==="香山區公所"){
-      var information = `<div>
-                        <h2 style="color: brown;">${parksData[i].公園}</h2>
-                        <span>位置｜${parksData[i].行政區}</span>
-                        <span>設施｜${parksData[i].設施內容}</span>
-                  </div>`;
+for (var i = 0; i < parksData.length; i++) {
+  if(parksData[i].行政區==='東區'){
+    
+     var parkInformation = `<div class="park_info">
+                          <h2 style="color: brown;">${parksData[i].公園}</h2>
+                          <span>位置｜${parksData[i].行政區}</span>
+                          <span>設施｜${parksData[i].設施內容}</span>
+                        </div>`;
+                        $('#parkInformation_east').append(parkInformation);
+  }
+ 
+}
 
-  // 使用 jQuery 將 information 插入到 HTML 中
-  $('#parkList_3').append(information);
-  };
+for (var i = 0; i < parksData.length; i++) {
+  if(parksData[i].行政區==='香山區'||parksData[i].行政區==='香山區公所'){
+    
+     var parkInformation = `<div class="park_info">
+                          <h2 style="color: brown;">${parksData[i].公園}</h2>
+                          <span>位置｜${parksData[i].行政區}</span>
+                          <span>設施｜${parksData[i].設施內容}</span>
+                        </div>`;
+                        $('#parkInformation_xiangshan').append(parkInformation);
+  }
+ 
 }
 
 
+// 搜尋功能
+$('#search').click(function(){
+  var keyword = $('#keyword').val().trim().toLowerCase();
+
+  $('#search_info').empty();
+
+  var searchResults = [];
+
+  for(var i = 0; i < parksData.length; i++) {
+    var park = parksData[i];
+    var parkName = park["公園"].toLowerCase();
+    var location = park["行政區"].toLowerCase();
+    var facilities = park["設施內容"].toLowerCase();
+
+    if (parkName.includes(keyword) || location.includes(keyword) || facilities.includes(keyword)) {
+      searchResults.push(park);
+    }
+  }
+
+
+  if (searchResults.length > 0) {
+    for (var j = 0; j < searchResults.length; j++) {
+      var result = searchResults[j];
+      var parkInfo = `<div class="park_info">
+                          <h2 style="color: brown;">${result.公園}</h2>
+                          <span>位置｜${result.行政區}</span>
+                          <span>設施｜${result.設施內容}</span>
+                      </div>`;
+      $('#search_info').append(parkInfo);
+    }
+  } else {
+    $('#search_info').html('<p>沒有找到符合條件的公園資料。</p>');
+  }
+
+  // if(result.行政區==="北區"){
+  //   var weatrthInfo = `<div class="location_info">
+  //                     <div class="location">北區</div>
+  //                     <div class="weather_info">
+  //                     <div class="weather">天氣</div>
+  //                     <div class="temperature">氣溫</div>
+  //                     <div class="humidity">濕度</div>
+  //                     <div class="wind_speed">風速</div>
+  //                     </div>
+  //                     </div>`
+  // $('#zone_search').append(weatrthInfo);                    
+  // }else if(result.行政區==="東區"){
+  //   var weatrthInfo = `<div class="location_info">
+  //                     <div class="location">東區</div>
+  //                     <div class="weather_info">
+  //                     <div class="weather">天氣</div>
+  //                     <div class="temperature">氣溫</div>
+  //                     <div class="humidity">濕度</div>
+  //                     <div class="wind_speed">風速</div>
+  //                     </div>
+  //                     </div>`
+  // $('#zone_search').append(weatrthInfo);         
+  // }
+  // else{
+  //   var weatrthInfo = `<div class="location_info">
+  //                     <div class="location">香山區</div>
+  //                     <div class="weather_info">
+  //                     <div class="weather">天氣</div>
+  //                     <div class="temperature">氣溫</div>
+  //                     <div class="humidity">濕度</div>
+  //                     <div class="wind_speed">風速</div>
+  //                     </div>
+  //                     </div>`
+  // $('#zone_search').append(weatrthInfo);         
+  // }
+
+  $('#zone_all').css('display','none');
+  $('#zone_north').css('display','none');
+  $('#zone_east').css('display','none');
+  $('#zone_xiangshan').css('display','none');
+
+});
+
+//匯入天氣資訊
+//向http提出api請求
+const apiKey="CWB-CCC67DE4-A5ED-40C9-AA59-2A203A7202F5";
+const apiUrl= "https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWB-CCC67DE4-A5ED-40C9-AA59-2A203A7202F5&format=JSON&WeatherElement=&GeoInfo=TownName";
+
+
+const searchBox=document.getElementById('keyword');
+const searchButton=document.getElementById('search_btn');
+
+//異步函數
+async function checkweather(city_name){ //此異步函數之函數名稱為checkweather，並引進參數city_name
+   const response=await fetch(apiUrl+city_name+`&appid=${apiKey}`);//利用fetch發出HTTP GET 請求，以獲取天氣數據
+
+
+   //若連結api，但是結果顯示404，表示資料不存在時，告訴系統應該處理之方式;否則則執行else{ }內部程式
+    if(response.status==404){
+        console.log('資料出不來');
+    }
+    else{
+        var data=await response.json();//從HTTP回饋的資訊中提取JSON數據
+
+        console.log(data);//顯示讀取到的資料
+
+        document.querySelector('.temperature').innerHTML=data.WeatherElement.airTemperature;
+    }
+
+    
+
+}
+
+checkweather();
