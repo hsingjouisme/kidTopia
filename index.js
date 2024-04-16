@@ -885,7 +885,7 @@ for (var i = 0; i < parksData.length; i++) {
 
 
 // 搜尋功能
-$('#search').click(function(){
+$('#search_btn').click(function(){
   var keyword = $('#keyword').val().trim().toLowerCase();
 
   $('#search_info').empty();
@@ -917,78 +917,40 @@ $('#search').click(function(){
   } else {
     $('#search_info').html('<p>沒有找到符合條件的公園資料。</p>');
   }
-
-  // if(result.行政區==="北區"){
-  //   var weatrthInfo = `<div class="location_info">
-  //                     <div class="location">北區</div>
-  //                     <div class="weather_info">
-  //                     <div class="weather">天氣</div>
-  //                     <div class="temperature">氣溫</div>
-  //                     <div class="humidity">濕度</div>
-  //                     <div class="wind_speed">風速</div>
-  //                     </div>
-  //                     </div>`
-  // $('#zone_search').append(weatrthInfo);                    
-  // }else if(result.行政區==="東區"){
-  //   var weatrthInfo = `<div class="location_info">
-  //                     <div class="location">東區</div>
-  //                     <div class="weather_info">
-  //                     <div class="weather">天氣</div>
-  //                     <div class="temperature">氣溫</div>
-  //                     <div class="humidity">濕度</div>
-  //                     <div class="wind_speed">風速</div>
-  //                     </div>
-  //                     </div>`
-  // $('#zone_search').append(weatrthInfo);         
-  // }
-  // else{
-  //   var weatrthInfo = `<div class="location_info">
-  //                     <div class="location">香山區</div>
-  //                     <div class="weather_info">
-  //                     <div class="weather">天氣</div>
-  //                     <div class="temperature">氣溫</div>
-  //                     <div class="humidity">濕度</div>
-  //                     <div class="wind_speed">風速</div>
-  //                     </div>
-  //                     </div>`
-  // $('#zone_search').append(weatrthInfo);         
-  // }
-
+  
   $('#zone_all').css('display','none');
   $('#zone_north').css('display','none');
   $('#zone_east').css('display','none');
   $('#zone_xiangshan').css('display','none');
 
-});
-
-//匯入天氣資訊
-//向http提出api請求
-const apiKey="CWB-CCC67DE4-A5ED-40C9-AA59-2A203A7202F5";
-const apiUrl= "https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWB-CCC67DE4-A5ED-40C9-AA59-2A203A7202F5&format=JSON&WeatherElement=&GeoInfo=TownName";
+})
 
 
-const searchBox=document.getElementById('keyword');
-const searchButton=document.getElementById('search_btn');
+const apiKey = "9584736b15d8f9c202f026e76e10c7aa";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=hsinchu";
+var weatherImg = document.querySelector('.weatherIcon')
 
-//異步函數
-async function checkweather(city_name){ //此異步函數之函數名稱為checkweather，並引進參數city_name
-   const response=await fetch(apiUrl+city_name+`&appid=${apiKey}`);//利用fetch發出HTTP GET 請求，以獲取天氣數據
+async function checkweather() { 
+  const response = await fetch(apiUrl+`&appid=${apiKey}`);
+  var info= await response.json();
+  console.log(info);
+
+    document.querySelector('.weatherIcon').innerHTML = info.weather[0].main;
+    document.querySelector('.temperature').innerHTML = info.main.temp.toFixed(1) + `°C`;
 
 
-   //若連結api，但是結果顯示404，表示資料不存在時，告訴系統應該處理之方式;否則則執行else{ }內部程式
-    if(response.status==404){
-        console.log('資料出不來');
+    if(info.weather[0].main=="Clouds"){
+      weatherImg.src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8kxIOuDv8qbPWwLkCkFSZFyxk0UG8KDebkEcJXLoXmx3v0PeJHcKVtaok4RPQvEEsN9q2MFgXsAWNVepCuR0t5jA4Sanw2hVvrfWnaRkXCoYEd7cI-wrdvSBFNx09TwwpLc6s1cb6Q5cV/s1600/mark_tenki_kumori.png';
     }
-    else{
-        var data=await response.json();//從HTTP回饋的資訊中提取JSON數據
-
-        console.log(data);//顯示讀取到的資料
-
-        document.querySelector('.temperature').innerHTML=data.WeatherElement.airTemperature;
+    else if(info.weather[0].main=='Clear'){
+      weatherImg.src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhwVQRBNp37wD368AZxWKFb07IPj1ibEwy5PAF6TD7DtfDWH6a0KBDOZGf45YIlNcyeqvrJmR08i4lKrKqOROxv-BSnoBdhGDbWzPm0A3YUV4SSzP9Z38hANQ_DUaKfQSErvfSrJtFi5QI/s800/tenki_mark01_hare.png';
     }
-
-    
+    else if(info.weather[0].main=='Rain'){
+      weatherImg.src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPBJCAPE0omJcc8fcYTcinsNp84_qYXXkXdg6GyUCWZUspWjyssI1dq6Q9HUJXMvRO1gLvZIWDXHOEQDOp0mdsCe2f0YRzfRcZjjt9CGxaRsuwop7I14lZ1-8FE1QjXjigmPzL3FZa5uI/s800/tenki_mark03_gouu.png';
+      document.querySelector('.notice').innerHTML='天雨路滑請小心！<p>出門請記得攜帶雨具</p>'
+    }
 
 }
+
 
 checkweather();

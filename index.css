@@ -145,7 +145,7 @@
     grid-template-columns: 1fr 1fr;
     width: 100%;
     max-width: 1000px;
-    margin: 80px auto;
+    margin: 30px auto;
 }
 .location{
     color: 	#CF9E9E;
@@ -154,26 +154,34 @@
 }
 .weather_info{
     border-radius: 30px;
-    padding: 10px 15px;
-    background-color: 	#EBD6D6;
+    border: 1px solid #CF9E9E;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 100%;
-    max-width: 600px;
+    max-width: 200px;
     text-align: center;
-    margin-right: 0px;
+    margin:100px auto 0px;
 }
-.weather{
-    border-right: 1px solid brown;
+.weather_title{
+    background-color: #CF9E9E;
+    border-radius: 30px 30px 0px 0px;
+    padding: 15px 0px;
+    text-align: center;
 }
-.temperature{
-    border-right: 1px solid brown;
+.weather_situation{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    padding: 10px;
 }
-.weather img{
+.notice{
+    margin-top: 30px;
+}
+.weatherIcon{
     width: 50%;
 }
-.humidity{
-    border-right: 1px solid brown;
+.temperature{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .park_info{
     background-color: snow;

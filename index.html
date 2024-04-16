@@ -75,6 +75,16 @@
             grid-column: 1;
             margin-top: 220px;
         }
+        .weather_info{
+          margin-top: 0px;
+          width: 90%;
+        }
+        .weather_title{
+          display: none;
+        }
+        .notice{
+          display: none;
+        }
         }
     </style>
 </head>
@@ -104,25 +114,30 @@
             <div class="zone_btn" id="btn_xiangshan" onclick="showDiv('xiangshan');location.href='#zone_xiangshan'">香山區</div>
             <div class="zone_btn" id="btn_all" onclick="showDiv('all');location.href='#zone_all'">全部</div>
           </div>
+          <div class="weather_info">
+            <div class="weather_title">目前天氣狀況</div>
+              <div class="weather_situation">
+                <div class="weather">
+                  <img class="weatherIcon">
+                </div>
+                <div class="temperature"></div>
+              </div>
+          </div>
+          <div class="notice"></div> 
         </div>
-        <!-- <div class="weather_btn">查看天氣</div> -->
       </div>
                 
       <!-- 公園資訊欄 -->
       <div class="park_layout">
         <!-- 新竹市所有公園資訊 -->
         <div id="zone_all" class="hidden">
+          
         </div>
         <!-- 北區公園資訊 -->
           <div id="zone_north" class="hidden">
             <div class="location_info">
               <div class="location">北區</div>
-              <div class="weather_info">
-                <div class="weather">天氣</div>
-                <div class="temperature">氣溫</div>
-                <div class="humidity">濕度</div>
-                <div class="wind_speed">風速</div>
-              </div>
+              
           </div>
             <div id="parkInformation_north"></div>
             
@@ -133,12 +148,7 @@
         <div id="zone_east" class="hidden">
           <div class="location_info">
             <div class="location">東區</div>
-            <div class="weather_info">
-              <div class="weather">天氣</div>
-              <div class="temperature">氣溫</div>
-              <div class="humidity">濕度</div>
-              <div class="wind_speed">風速</div>
-            </div>
+          
           </div>
           <div id="parkInformation_east"></div>
         </div>
@@ -148,12 +158,7 @@
           
           <div class="location_info">
             <div class="location">香山區</div>
-            <div class="weather_info">
-              <div class="weather">天氣</div>
-              <div class="temperature">氣溫</div>
-              <div class="humidity">濕度</div>
-              <div class="wind_speed">風速</div>
-            </div>
+          
           </div>
           <div id="parkInformation_xiangshan"></div>
         </div>
